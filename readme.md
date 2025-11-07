@@ -37,3 +37,30 @@ Notes:
 - The app loads `.env` automatically on startup.
 - If `OPENAI_KEY` is missing, the app will run but will print a helpful message instead of contacting the provider.
 - Conversation history is stored under `data/` using flat files.
+
+## Lab 2 - Questions
+Performance Analysis
+* Append Times:
+  - Flat Files: Fast for small conversations, slower as messages grow.
+  - MongoDB: Consistent, slightly slower for very small conversations.
+* Read Times:
+  - Flat Files: Slightly faster for small conversations.
+  - MongoDB: Consistent as dataset grows.
+* Summary: 
+  - Flat Files are good for small apps; MongoDB is better for large, multi-user apps.
+Atomic Operations
+* Defenition:
+  - Atomic appoerations are uninterupted opperations that are guarenteed to be executed completely.
+  - Atomic operations could be important to make sure all chat messages and conversations are saved properly.
+Scalability 
+* Finding all threads for a specific user
+  - Flat file: Slow(scan files), MongoDB: Fast(indexed)
+* Loading a specific conversation
+  - Flat file: slower as file grows, MongoDB: Consistent
+* Storage organization and file system limits
+  - Flat file: Many files(uses os file system), MongoDB: Efficient, scalable
+
+Data Modeling Design Challenge
+1. One advantadge of the embedded design is that it can be extracted and processed however you want.
+2. One advantadge of individual design is that each message doc can hold seperate info together.
+3. A scenario I might use the separate message design is for a large scale setup with many message updates.
